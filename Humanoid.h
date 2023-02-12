@@ -7,4 +7,5 @@ public:
 
 private:
 	int hp;
+	bool alive;
 };
