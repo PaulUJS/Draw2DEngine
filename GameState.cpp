@@ -2,7 +2,6 @@
 
 void GameState::loadGame()
 {
-
 }
 
 bool GameState::processEvents(SDL_Window* window)
@@ -39,5 +38,16 @@ bool GameState::processEvents(SDL_Window* window)
 		break;
 		}
 	}
+
+	player->movement();
+	player->collisionDetection(*wall);
+	player->updatePos();
+
 	return done;
+}
+
+void GameState::endGame()
+{
+	player = nullptr;
+	wall = nullptr;
 }
