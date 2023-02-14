@@ -2,7 +2,14 @@
 
 void GameObjects::drawImage(SDL_Renderer* renderer)
 {
+    SDL_Rect rect = { this->x, this->y, this->w, this->h };
+    SDL_RenderCopy(renderer, this->texture, nullptr, &rect);
 
+    SDL_Surface* surface = nullptr;
+    surface = IMG_Load("");
+
+    this->texture = SDL_CreateTextureFromSurface(renderer, surface);
+    SDL_FreeSurface(surface);
 }
 
 void GameObjects::draw(SDL_Renderer* renderer)
@@ -21,10 +28,6 @@ void GameObjects::updatePos()
 	this->y += this->dy;
 }
 
-int collide2d(float x1, float y1, float x2, float y2, float wt1, float ht1, float wt2, float ht2)
-{
-	return (!((x1 > (x2 + wt2)) || (x2 > (x1 + wt1)) || (y1 > (y2 + ht2)) || (y2 > y1 + ht1)));
-}
 
 void GameObjects::collisionDetection(GameObjects& wall)
 {

@@ -14,11 +14,11 @@ int main(int argc, char* args[])
 {
 	GameState gameState;
 	Renderer engineRenderer;
-	Humanoid player(200, 200, 0, 0, 15, 15);
-	GameObjects wall(400, 400, 0, 0, 60, 60);
+	Humanoid player(200, 200, 0, 0, 0.5, 0.5, 15, 15, 0.34f);
+	GameObjects stage(0, 400, 0, 0, 0.5, 0.5, 1280, 20, 0);
 
 	gameState.player = &player;
-	gameState.wall = &wall;
+	gameState.stage = &stage;
 	engineRenderer.player = &player;
 
 	SDL_Window* window = nullptr;
@@ -37,7 +37,9 @@ int main(int argc, char* args[])
 	{
 		// Whenever a game ending event is returned game ends
 		done = gameState.processEvents(window);
-		engineRenderer.renderAll(wall);
+		gameState.processTick();
+
+		engineRenderer.renderAll(stage);
 	}
 
 	// Cleanup

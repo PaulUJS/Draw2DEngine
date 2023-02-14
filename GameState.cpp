@@ -2,6 +2,7 @@
 
 void GameState::loadGame()
 {
+	this->time = 0;
 }
 
 bool GameState::processEvents(SDL_Window* window)
@@ -40,14 +41,20 @@ bool GameState::processEvents(SDL_Window* window)
 	}
 
 	player->movement();
-	player->collisionDetection(*wall);
+	player->collisionDetection(*stage);
 	player->updatePos();
 
 	return done;
 }
 
+void GameState::processTick()
+{
+	this->time++;
+	player->dy += player->g;
+}
+
 void GameState::endGame()
 {
-	player = nullptr;
-	wall = nullptr;
+	this->player = nullptr;
+	this->stage = nullptr;
 }

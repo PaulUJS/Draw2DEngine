@@ -9,8 +9,9 @@ class Renderer
 public:
 	SDL_Renderer* renderer;
 	Humanoid* player;
+	GameObjects* stage;
 
-	void renderAll(GameObjects& wall);
+	void renderAll(GameObjects& stage);
 
 private:
 

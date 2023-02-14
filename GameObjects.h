@@ -1,11 +1,16 @@
 #pragma once
 #include <SDL.h>
+#include <SDL_image.h>
 #include <iostream>
 
 class GameObjects
 {
 public:
-	float dx, dy;
+	float dx, dy, dxv, dyv;
+	float x, y, g;
+	int w, h;
+
+	SDL_Texture* texture;
 
 	void updatePos();
 	void collisionDetection(GameObjects& wall);
@@ -13,19 +18,19 @@ public:
 	void drawImage(SDL_Renderer* renderer);
 	// Draws with rects
 	void draw(SDL_Renderer* renderer);
-	int collide2d(float x1, float y1, float x2, float y2, float wt1, float ht1, float wt2, float ht2);
 	
 	// Constructor
-	GameObjects(int x, int y, int dx, int dy, int w, int h)
+	GameObjects(float x, float y, float dx, float dy, float dxv, float dyv, int w, int h, float g)
 	{
 		this->x = x;
 		this->y = y;
 		this->dx = dx;
+		this->dxv = dxv;
+		this->dyv = dyv;
 		this->dy = dy;
 		this->w = w;
 		this->h = h;
+		this->g = g;
 	}
 private:
-	float x, y;
-	int w, h;
 };
